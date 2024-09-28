@@ -318,7 +318,7 @@ nav ul {
 .footer-contact {
   height: 10rem;
   display: flex;
-  gap: 2.4rem;
+  gap: 2rem;
   align-items: center;
 
   & .icon {
@@ -334,7 +334,7 @@ nav ul {
 .footer-contact-text {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.8rem;
 
   & p {
     font-size: 1.5rem;
