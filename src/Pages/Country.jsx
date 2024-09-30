@@ -29,8 +29,17 @@ const Country = () => {
     return country;
   };
 
+  const filterRegion = (country) => {
+    if (filter === "all") {
+      return country;
+    }
+    return country.region === filter;
+  };
+
   // Main Logic
-  const filterCountries = countries.filter((country) => searchCountry(country));
+  const filterCountries = countries.filter(
+    (country) => searchCountry(country) && filterRegion(country)
+  );
 
   return (
     <section className="country-section">
@@ -39,6 +48,8 @@ const Country = () => {
         setSearch={setSearch}
         filter={filter}
         setFilter={setFilter}
+        countries={countries}
+        setCountries={setCountries}
       />
       <ul className="grid grid-four-cols">
         {filterCountries.map((currCountry, index) => {

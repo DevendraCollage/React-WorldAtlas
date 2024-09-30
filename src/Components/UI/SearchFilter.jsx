@@ -1,4 +1,11 @@
-const SearchFilter = ({ search, setSearch, filter, setFilter }) => {
+const SearchFilter = ({
+  search,
+  setSearch,
+  filter,
+  setFilter,
+  countries,
+  setCountries,
+}) => {
   const handleInputChange = (event) => {
     event.preventDefault();
     setSearch(event.target.value);
@@ -8,14 +15,33 @@ const SearchFilter = ({ search, setSearch, filter, setFilter }) => {
     setFilter(event.target.value);
   };
 
+  const sortCountries = (value) => {
+    const sortCountry = [...countries].sort((a, b) => {
+      return value === "asc"
+        ? a.name.common.localeCompare(b.name.common)
+        : b.name.common.localeCompare(a.name.common);
+    });
+    setCountries(sortCountry);
+  };
+
   return (
     <section className="section-searchFilter container">
-      <input
-        type="text"
-        placeholder="search"
-        value={search}
-        onChange={handleInputChange}
-      />
+      <div>
+        <input
+          type="text"
+          placeholder="search"
+          value={search}
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <div>
+        <button onClick={() => sortCountries("asc")}>Asc</button>
+      </div>
+
+      <div>
+        <button onClick={() => sortCountries("des")}>Desc</button>
+      </div>
 
       <div>
         <select
@@ -24,6 +50,7 @@ const SearchFilter = ({ search, setSearch, filter, setFilter }) => {
           onChange={handleSelectChange}
         >
           <option value="all">All</option>
+          <option value="Asia">Asia</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
           <option value="Europe">Europe</option>
